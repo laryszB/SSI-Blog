@@ -12,6 +12,35 @@
 
 <body>
 
+
+
+<div class = "header">
+
+    <div class = "header-img">
+        <img class = "flaga-img" src = "img/flaga.png" alt = "Flaga Polski">
+        <img class = "prezes-img" src = "img/prezes2.png" alt = "Prezes Polski">
+    </div>
+
+    <div class = "header-text">
+        <h1 class = "top-header-text">Witam na moim blogu, pozdrawiam</h1>
+        <p class = "bottom-header-text">Blog będzie poświęcony sprawom Polski</p>
+    </div>
+
+</div>
+
+
+
+<div class = "sidebar">
+    <ul class = "sidebar-links">
+        <li><a href = "#"><i class="fa-solid fa-calendar"></i><p> Kalendarz</p></a></li>
+        <li><a href = "#"><i class="fa-solid fa-archway"></i><p> Archiwum</p></a></li>
+        <li><a href = "#"><i class="fa-solid fa-filter"></i><p> Kategorie</p></a></li>
+        <li><a href = "#"><i class="fa-solid fa-heart"></i><p> Polecane strony</p></a></li>
+        <li><a href = "#"><i class="fa-solid fa-key"></i><p> Panel administracyjny</p></a></li>
+    </ul>
+
+</div>
+
 <?php
 
 class Article {
@@ -72,35 +101,6 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
 
 ?>
 
-<div class = "header">
-
-    <div class = "header-img">
-        <img class = "flaga-img" src = "img/flaga.png" alt = "Flaga Polski">
-        <img class = "prezes-img" src = "img/prezes2.png" alt = "Prezes Polski">
-    </div>
-
-    <div class = "header-text">
-        <h1 class = "top-header-text">Witam na moim blogu, pozdrawiam</h1>
-        <p class = "bottom-header-text">Blog będzie poświęcony sprawom Polski</p>
-    </div>
-
-</div>
-
-
-
-<div class = "sidebar">
-    <ul class = "sidebar-links">
-        <li><a href = "#"><i class="fa-solid fa-calendar"></i><p> Kalendarz</p></a></li>
-        <li><a href = "#"><i class="fa-solid fa-archway"></i><p> Archiwum</p></a></li>
-        <li><a href = "#"><i class="fa-solid fa-filter"></i><p> Kategorie</p></a></li>
-        <li><a href = "#"><i class="fa-solid fa-heart"></i><p> Polecane strony</p></a></li>
-        <li><a href = "#"><i class="fa-solid fa-key"></i><p> Panel administracyjny</p></a></li>
-    </ul>
-
-</div>
-
-
-
 <div class = "post-space">
 
     <?php
@@ -124,7 +124,65 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
 
 ?>
 
-</div>
+
+    <?php
+    // define variables and set to empty values
+    $nickErr = $emailErr = "";
+    $nick = $email = $comment = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["nick"])) {
+            $nickErr = "Nick is required";
+        } else {
+            $nick = test_input($_POST["nick"]);
+            // check if nick only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$nick)) {
+                $nickErr = "Only letters and white space allowed";
+            }
+        }
+
+        if (empty($_POST["email"])) {
+            $emailErr = "Email is required";
+        } else {
+            $email = test_input($_POST["email"]);
+            // check if e-mail address is well-formed
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+            }
+        }
+
+        if (empty($_POST["comment"])) {
+            $comment = "";
+        } else {
+            $comment = test_input($_POST["comment"]);
+        }
+
+    }
+
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    ?>
+
+    <h2>ZOSTAW KOMENTARZ!</h2>
+    <p><span class="error">* required field</span></p>
+    <form method="post" action="comment-page.php">
+        Nick: <input type="text" name="nick" value="<?php echo $nick;?>">
+        <span class="error">* <?php echo $nickErr;?></span>
+        <br><br>
+        E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+        <span class="error">* <?php echo $emailErr;?></span>
+        <br><br>
+        Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+        <br><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+
+
+
 
 
 <div class = "o-mnie-container">
@@ -140,9 +198,6 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
         </p>
     </div>
 </div>
-
-
-
 
 <div class = "footer">
     <p>2022 Błażej Larysz</p>
