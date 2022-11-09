@@ -41,6 +41,7 @@
 
 </div>
 
+<!--Zdefiniowanie artykułów-->
 <?php
 
 class Article {
@@ -103,6 +104,7 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
 
 <div class = "post-space">
 
+<!--Wyświetlanie artykułów-->
     <?php
 
     foreach($articles as $value){
@@ -132,22 +134,22 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["nick"])) {
-            $nickErr = "Nick is required";
+            $nickErr = "Nick jest wymagany";
         } else {
             $nick = test_input($_POST["nick"]);
             // check if nick only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z-' ]*$/",$nick)) {
-                $nickErr = "Only letters and white space allowed";
+                $nickErr = "Tylko litery lub spacje!";
             }
         }
 
         if (empty($_POST["email"])) {
-            $emailErr = "Email is required";
+            $emailErr = "Email jest wymagany";
         } else {
             $email = test_input($_POST["email"]);
             // check if e-mail address is well-formed
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Invalid email format";
+                $emailErr = "Zły format emaila";
             }
         }
 
@@ -168,7 +170,7 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
     ?>
 
     <h2>ZOSTAW KOMENTARZ!</h2>
-    <p><span class="error">* required field</span></p>
+    <p><span class="error">* pole wymagane</span></p>
     <form method="post" action="comment-page.php">
         Nick: <input type="text" name="nick" value="<?php echo $nick;?>">
         <span class="error">* <?php echo $nickErr;?></span>
@@ -176,12 +178,27 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
         E-mail: <input type="text" name="email" value="<?php echo $email;?>">
         <span class="error">* <?php echo $emailErr;?></span>
         <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+        Komentarz: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
         <br><br>
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Wyślij">
     </form>
 
 
+    <!--PAGINACJA-->
+
+    <div class="pagination-container">
+
+        <h2>Paginacja</h2>
+
+        <div class="pages-container">
+            <a href="index.php?str=1" class="page-button">1</a>
+            <a href="index.php?str=2" class="page-button">2</a>
+            <a href="index.php?str=3" class="page-button">3</a>
+            <a href="index.php?str=4" class="page-button">4</a>
+            <a href="index.php?str=5" class="page-button">5</a>
+        </div>
+
+    </div>
 
 
 
