@@ -4,15 +4,16 @@
     <html lang="pl"></html>
     <title>Blog Błażeja</title>
     <script src="https://kit.fontawesome.com/5a159a8524.js" crossorigin="anonymous"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
     <link rel = "stylesheet" href = "css/general.css">
+    <link rel = "stylesheet" href = "css/form.css">
+    <link rel = "stylesheet" href = "css/sidebar.css">
 </head>
 
 <body>
-
-
 
 <div class = "header">
 
@@ -126,79 +127,94 @@ $articles = array($article1, $article2, $article3, $article4, $article5);
 
 ?>
 
+    <!--FORMULARZ-->
 
-    <?php
-    // define variables and set to empty values
-    $nickErr = $emailErr = "";
-    $nick = $email = $comment = "";
+<?php include 'php/reCaptcha.php';?>
+<script defer src = "js/form-validation.js" ></script>
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["nick"])) {
-            $nickErr = "Nick jest wymagany";
-        } else {
-            $nick = test_input($_POST["nick"]);
-            // check if nick only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$nick)) {
-                $nickErr = "Tylko litery lub spacje!";
-            }
-        }
+<div class = "form-container">
 
-        if (empty($_POST["email"])) {
-            $emailErr = "Email jest wymagany";
-        } else {
-            $email = test_input($_POST["email"]);
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Zły format emaila";
-            }
-        }
+    <div class = "form-core">
 
-        if (empty($_POST["comment"])) {
-            $comment = "";
-        } else {
-            $comment = test_input($_POST["comment"]);
-        }
+        <h2>Zostaw komentarz</h2>
 
-    }
+            <form class = "form" id = "form" method= "post" action="http://www.tomaszx.pl/materialy/test_przesylania.php">
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-    ?>
+                <div class = "form-control" id = "form-control">
+                    <label>Nick</label>
+                    <input id = "nick" name = "nick" type = "text" placeholder= "Blazej123">
+                    <small>Błąd</small>
+                </div>
 
-    <h2>ZOSTAW KOMENTARZ!</h2>
-    <p><span class="error">* pole wymagane</span></p>
-    <form method="post" action="comment-page.php">
-        Nick: <input type="text" name="nick" value="<?php echo $nick;?>">
-        <span class="error">* <?php echo $nickErr;?></span>
-        <br><br>
-        E-mail: <input type="text" name="email" value="<?php echo $email;?>">
-        <span class="error">* <?php echo $emailErr;?></span>
-        <br><br>
-        Komentarz: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
-        <br><br>
-        <input type="submit" name="submit" value="Wyślij">
-    </form>
+                <div class = "form-control" id = "form-control">
+                    <label>Email</label>
+                    <input id = "email" name = "email" type = "text" placeholder= "blazej.larysz@gmail.com">
+                    <small>Błąd</small>
+                </div>
+
+                <div class = "form-control" id = "form-control">
+                    <label>Komentarz</label>
+                    <textarea id  = "comment" name = "comment" rows = "5" cols = "50" placeholder = ":)"></textarea>
+                    <small>Błąd</small>
+                </div>
+
+                <!-- reCaptcha Google v2 -->
+
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <div class="g-recaptcha" data-sitekey="6LfKYBUjAAAAAPdEDZ-bFhLKLwKc4MZsLiYR9Tg5"></div>
+
+                <!-- reCaptcha Google v2 koniec -->
+
+                <button type = "submit" name = "submit" >Wyślij</button>
+
+            </form>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+    <!--FORMULARZ KONIEC-->
+
 
 
     <!--PAGINACJA-->
+
+    <?php
+
+    if (!isset ($_GET['str']) ) {
+        $page = 1;
+    } else {
+        $page = $_GET['str'];
+    }
+
+    $results_per_page = 3;
+    $number_of_articles = count($articles);
+    $number_of_pages = intval(ceil($number_of_articles/$results_per_page));
+    $page_first_result = ($page-1) * $results_per_page;
+
+    ?>
 
     <div class="pagination-container">
 
         <h2>Paginacja</h2>
 
         <div class="pages-container">
-            <a href="index.php?str=1" class="page-button">1</a>
-            <a href="index.php?str=2" class="page-button">2</a>
-            <a href="index.php?str=3" class="page-button">3</a>
-            <a href="index.php?str=4" class="page-button">4</a>
-            <a href="index.php?str=5" class="page-button">5</a>
+            <?php
+            for($page=1; $page<=$number_of_pages; $page++ ){
+                echo '<a href="index.php?str=' . $page . '">' . $page . ' </a>';
+            }
+            ?>
         </div>
 
     </div>
+
+    <!--PAGINACJA KONIEC-->
 
 
 

@@ -1,0 +1,97 @@
+.form-container{
+    border: 6px solid darkred;
+    border-radius: 6px;
+    width: 500px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container h2{
+    padding-bottom: 10px;
+}
+
+.form-control{
+    padding-bottom: 10px;
+}
+
+.form-control label{
+    font-weight: bold;
+    display: inline-block;
+}
+
+.form-control input{
+    height: 30px;
+    width: 250px;
+
+}
+
+.form-control textarea {
+    resize: vertical;
+}
+
+.form-control input, textarea {
+    display: block;
+    font-size: 14px;
+}
+
+.form-control label{
+    margin-bottom: 5px;
+}
+
+.form-control small{
+    visibility: hidden;
+}
+
+.form-control.error small{
+    visibility: visible;
+    color: red;
+}
+
+.form-control.success small{
+    visibility: hidden;
+}
+
+.form-control.error input{
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.form-control.error textarea{
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.form-control.success input{
+    border: 2px solid #2afc2a;
+    border-radius: 4px;
+}
+
+.form-control.success textarea{
+    border: 2px solid #2afc2a;
+    border-radius: 4px;
+}
+
+.form-container button{
+    background-color: darkred;
+    border: 2px solid darkred;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.form-container button:hover{
+    cursor: pointer;
+    opacity: 1;
+
+
+}
+
+.g-recaptcha{
+    margin-bottom: 15px;
+}
