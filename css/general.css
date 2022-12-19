@@ -174,3 +174,18 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+.post-action{
+    margin-bottom: 20px;
+    text-decoration: none;
+    background-color: darkred;
+    color: white;
+    width: fit-content;
+    padding: 8px;
+}
+
+.post-manipulation{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 80px;
+}

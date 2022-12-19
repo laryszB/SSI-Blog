@@ -33,7 +33,7 @@
 
             <!-- reCaptcha Google v2 koniec -->
 
-            <button type = "submit" name = "submit" >Wyślij</button>
+            <button type = "submit" name = "comment-submit" >Wyślij</button>
 
         </form>
 

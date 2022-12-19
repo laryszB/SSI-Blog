@@ -1,0 +1,24 @@
+.add-post-container{
+    border: 6px solid darkred;
+    border-radius: 6px;
+    width: fit-content;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+}
+
+.add-post-container h2{
+    display: inline-block;
+}
+
+.add-post-form-control label{
+    display: block;
+}
+
+.add-post-form-control{
+    margin-bottom: 20px;
+}

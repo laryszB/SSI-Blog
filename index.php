@@ -15,6 +15,7 @@
 
 <body>
 
+
 <!--HEADER-->
 
 <?php include "php/header.php"?>
@@ -36,6 +37,11 @@
 <!--ZDEFINIOWANIE ARTYKUŁÓW KONIEC-->
 
 <div class = "post-space">
+    <div class = "post-manipulation">
+        <a class = "post-action" href = "php/add-post.php">DODAJ POSTA</a>
+        <a class = "post-action" href = "edit-post.php">EDYTUJ POSTA</a>
+        <a class = "post-action" href = "remove-post.php">USUŃ POSTA</a>
+    </div>
 
   <!--WYŚWIETLANIE ARTYKUŁÓW-->
 
@@ -67,21 +73,17 @@
 
   <!--FORMULARZ REJESTRACJI-->
 
-    <?php include "php/registration-form.php" ?>
+    <?php  include "php/registration-form.php" ?>
+<!--    <a class = "register" href="php/registration-form.php">ZAREJESTRUJ SIĘ</a>-->
 
   <!--FORMULARZ REJESTRACJI KONIEC-->
 
-  <div class = "o-mnie-text">
+    <!--FORMULARZ LOGOWANIA-->
 
-    <p class = "o-mnie-text-title">
-      O MNIE
-    </p>
+    <?php  include "php/log-in-form.php" ?>
+    <!--    <a class = "register" href="php/registration-form.php">ZAREJESTRUJ SIĘ</a>-->
 
-    <p class = "o-mnie-text-p">
-      Tutaj zawarte są informacje o mnie:
-      Stan cywilny: zaręczony.
-    </p>
-  </div>
+    <!--FORMULARZ LOGOWANIA KONIEC-->
 
 </div>
 
