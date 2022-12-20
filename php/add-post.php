@@ -7,12 +7,12 @@
 
 <div class="add-post-container">
 
-    <form class = "add-post-form" id = "add-post-form" method= "post" action="add-post.php">
+    <form class = "add-post-form" id = "add-post-form" method= "post" action="add-post-database.php">
 
         <h2>DODAJ POSTA</h2>
 
         <div class = "add-post-form-control" id = "add-post-form-control">
-            <label>Dodajesz post jako: <?php echo $_SESSION['loginNick']?></label>
+            <label>Dodajesz post jako: <strong><?php if(isset($_SESSION['loginNick'])) echo $_SESSION['loginNick']?></strong></label>
         </div>
 
         <div class = "add-post-form-control" id = "add-post-form-control">
@@ -25,7 +25,7 @@
             <textarea id  = "add-post-content" name = "content" rows = "30" cols = "100" maxlength="500"></textarea>
         </div>
 
-        <button type = "submit" name = "submit" >Dodaj posta</button>
+        <button type = "submit" name = "add-post-submit" >Dodaj posta</button>
 
     </form>
 

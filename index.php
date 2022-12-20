@@ -1,3 +1,9 @@
+<?php
+
+session_start()
+
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -39,8 +45,8 @@
 <div class = "post-space">
     <div class = "post-manipulation">
         <a class = "post-action" href = "php/add-post.php">DODAJ POSTA</a>
-        <a class = "post-action" href = "edit-post.php">EDYTUJ POSTA</a>
-        <a class = "post-action" href = "remove-post.php">USUŃ POSTA</a>
+        <a class = "post-action" href = "php/edit-post.php">EDYTUJ POSTA</a>
+        <a class = "post-action" href = "php/remove-post.php">USUŃ POSTA</a>
     </div>
 
   <!--WYŚWIETLANIE ARTYKUŁÓW-->
@@ -84,6 +90,13 @@
     <!--    <a class = "register" href="php/registration-form.php">ZAREJESTRUJ SIĘ</a>-->
 
     <!--FORMULARZ LOGOWANIA KONIEC-->
+
+  <!--FORMULARZ WYLOGOWYWANIA-->
+
+    <?php  include "php/log-out-form.php" ?>
+  <!--    <a class = "register" href="php/registration-form.php">ZAREJESTRUJ SIĘ</a>-->
+
+  <!--FORMULARZ WYLOGOWYWANIA KONIEC-->
 
 </div>
 

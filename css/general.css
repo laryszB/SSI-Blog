@@ -41,6 +41,19 @@ body{
     margin-left:30px;
 }
 
+.header-log-in-info{
+    flex: 0.2;
+    background: #0b4d93;
+
+}
+
+.log-in-info-text{
+    color: white;
+    padding: 10px;
+
+
+}
+
 .header-text {
     flex: 1;
     padding-right: 300px;
