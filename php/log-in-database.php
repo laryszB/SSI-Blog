@@ -34,11 +34,4 @@
         else{
             echo "Błędne dane logowania";
         }
-
-
-
-
-
-
-
     }

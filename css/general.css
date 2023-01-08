@@ -136,8 +136,9 @@ body{
     right:0;
     top:100px;
     bottom:22px;
-    width:300px;
+    width:310px;
     border: 3px solid #1f1c91;
+    overflow: auto;
 
 }
 

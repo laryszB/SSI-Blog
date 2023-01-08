@@ -1,70 +1,50 @@
-<link rel = "stylesheet" href = "/css/general.css">
-<link rel = "stylesheet" href = "/css/edit-post.css">
+<link rel="stylesheet" href="/css/edit-post-form.css">
+<link rel="stylesheet" href="/css/edit-post.css">
 
 
 <?php
-
-session_start();
-
-if(isset($_SESSION['id'])){
+if (isset($_POST["post-edit-button"])) {
+    $postID = $_POST['postID'];
+    $postTitle = $_POST['postTitle'];
+    $postContent = $_POST['postContent'];
 
     $conn = mysqli_connect('localhost', 'root', '', 'blog');
 
-//            if($conn){
-//                echo '<strong>Połączenie udane</strong><br>';
-//            }
+    if($conn->connect_error){
+        die('Połączenie nieudane: '.$conn->connect_error);
+    }
+    else{ ?>
 
-    $sql = "SELECT id, title, content FROM post where authorID = '{$_SESSION['id']}'";
+        <h1> DOKONAJ EDYCJI POSTA </h1>
+        <div class = "form-page">
 
-    $result = mysqli_query($conn, $sql);
+                <div class = "form-container">
+                    <form class = "edit-page-form" id = "edit-page-form" method= "post" action="edit-post-confirm.php">
 
-    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        <div class = "form-control" id = "form-control">
+                            <label>ID POSTA</label>
+                            <input id = "postID" name = "postID" type = "text" value = "<?php echo htmlspecialchars($postID); ?>" readonly="readonly">
+                        </div>
 
-//            print_r($posts);
+                        <div class = "form-control" id = "form-control">
+                            <label>TYTUŁ POSTA</label>
+                            <input id = "postTitle" name = "postTitle" type = "text" value = "<?php echo htmlspecialchars($postTitle); ?>">
+                        </div>
 
-    mysqli_free_result($result);
+                        <div class = "form-control" id = "form-control">
+                            <label>TREŚĆ POSTA</label>
+                            <textarea id  = "postContent" name = "postContent" rows = "15" cols = "70" ><?php echo htmlspecialchars($postContent); ?></textarea>
+                        </div>
 
-    mysqli_close($conn);
-}
-else{
-    echo "Brak zalogowanego użytkownika. Zaloguj się i spróbuj ponownie.";
-}
+                        <button type = "submit" name = "post-edit-confirm-button" >Zatwierdź edycję</button>
 
-
-
-?>
-
-
-
-<?php
-
-if(isset($_SESSION['id'])){
-
-foreach($posts as $post){ ?>
-    <div class = 'post'>
-
-        <div class = 'post-title-div'>
-
-          <p class = 'post-title-authorID'>
-              <?php echo htmlspecialchars($post['id']); ?>
-          </p>
-
-          <p class = 'post-title-p'>
-              <?php echo htmlspecialchars($post['title']); ?>
-          </p>
-
+                    </form>
+                </div>
         </div>
 
-        <div class = 'post-text-div'>
-            <p class = 'post-text-p'>
-                <?php echo htmlspecialchars($post['content']); ?>
-            </p>
+        <a class="return" href="edit-post-form.php">< Powrót</a>
 
-        </div>
-        <a class = "edit-post-link" href = "edit-page.php">EDYTUJ TEN POST</a>
 
-    </div>
-<?php } ?>
 
-<?php } ?>
-
+    <?php } ?>
+    <?php } ?>

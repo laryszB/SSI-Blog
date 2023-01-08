@@ -45,8 +45,8 @@ session_start()
 <div class = "post-space">
     <div class = "post-manipulation">
         <a class = "post-action" href = "php/add-post.php">DODAJ POSTA</a>
-        <a class = "post-action" href = "php/edit-post.php">EDYTUJ POSTA</a>
-        <a class = "post-action" href = "php/remove-post.php">USUŃ POSTA</a>
+        <a class = "post-action" href = "php/edit-post-form.php">EDYTUJ POSTA</a>
+        <a class = "post-action" href = "php/delete-post-form.php">USUŃ POSTA</a>
     </div>
 
   <!--WYŚWIETLANIE ARTYKUŁÓW-->

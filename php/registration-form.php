@@ -4,7 +4,7 @@
 
         <h2>Zarejestruj się</h2>
 
-        <form class = "form-registration" id = "form-registration" method= "post" action="php/registration-form-database.php">
+        <form class = "form-registration" id = "form-registration" method= "post" action="registration-form-database.php">
 
             <div class = "form-registration-control" id = "form-registration-control">
                 <label>Nick</label>
